@@ -227,6 +227,11 @@ li:hover {
   background-color: #1d6154;
   color: white;
 }
+
+.hide {
+  display: none;
+}
+
 .gallery {
   width: 100%;
   display: grid;
