@@ -1,26 +1,20 @@
 // TEST SERVER FETCH API
 // console.log(fetch('http://localhost:5678/api/works'))
 
-const gallery = document.querySelector('.gallery')
-const figure = document.querySelector('figure')
+// import { createWork, createButton, filterContentByCategory } from './api.js'
+// import { filtrageCateory } from ".//nqnanana" EN FAISANT ATTENTION À LES ATTENDRE ASYNC AWAIT
 
-fetch('http://localhost:5678/api/works')
-  .then((response) => response.json())
-  .then((data) => {
-    console.log(data)
-    data.forEach((works) => {
-      console.log(works.imageUrl)
-      const figure = document.createElement('figure')
-      const img = document.createElement('img')
-      const title = document.createElement('figcaption')
+import { createGallery, createFilter } from './gallery.js'
 
-      img.src = works.imageUrl
-      title.textContent = works.title
-      img.alt = works.title
+// const gallery = document.querySelector('.gallery')
 
-      figure.appendChild(img)
-      figure.appendChild(title)
-      gallery.appendChild(figure)
-    })
-  })
-  .catch((error) => console.log(error))
+await createFilter()
+await createGallery()
+
+// A partir de maintenant, les photos et filtres sont chargés.
+
+/* const boutons = document.querySelectorAll('.button-filtrage')
+
+boutons.forEach((bouton) => {
+  filtrageCateory(bouton)
+}) */
