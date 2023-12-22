@@ -290,3 +290,59 @@ footer nav ul {
   justify-content: flex-end;
   margin: 2em;
 }
+
+/* LOGIN PAGE */
+
+/* style du titre */
+.login {
+  color: #1d6154;
+  text-align: center;
+  font-family: Syne;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+  margin-bottom: 60px;
+  margin-top: 150px;
+}
+
+/* emplacement du form */
+.login__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login__form label {
+  text-align: left;
+}
+
+/* style des champs */
+.field {
+  margin: 10px 0;
+  background: #fff;
+  box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+  width: 379px;
+  height: 51px;
+  flex-shrink: 0;
+}
+
+/* style du bouton connexion*/
+.connexion {
+  width: 179px;
+  height: 36px;
+  flex-shrink: 0;
+}
+
+/* style de mot de passe oublié */
+.forget {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Login link style neutre */
+a {
+  text-decoration: none;
+}
+a:visited {
+  color: inherit;
+}

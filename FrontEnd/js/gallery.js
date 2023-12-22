@@ -45,15 +45,16 @@ export async function createFilter() {
   })
 }
 
+// Filter the gallery by category
 const filterContentByCategory = (category) => {
-  console.log('Selected category ID:', category.id) // Debug line
   const works = document.querySelectorAll('.gallery figure')
   works.forEach((work) => {
-    console.log('Work category ID:', work.dataset.categoryId)
-    console.log('Work category ID as number:', Number(work.dataset.categoryId)) // Debug line
+    // Compare the category id of each work with the id of the clicked button
     if (Number(work.dataset.categoryId) === Number(category.id)) {
+      // If they match, remove the 'hide' class
       work.classList.remove('hide')
     } else {
+      // If they don't match, add the 'hide' class (Hide class contain display: none; in css)
       work.classList.add('hide')
     }
   })
