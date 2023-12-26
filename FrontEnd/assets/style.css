@@ -331,6 +331,7 @@ footer nav ul {
   width: 179px;
   height: 36px;
   flex-shrink: 0;
+  cursor: pointer;
 }
 
 /* style de mot de passe oublié */
@@ -342,7 +343,27 @@ footer nav ul {
 /* Login link style neutre */
 a {
   text-decoration: none;
+  color: initial;
 }
 a:visited {
   color: inherit;
+}
+
+a:hover {
+  color: #b1663c;
+}
+
+/* login fail */
+.login_fail {
+  padding: 20px;
+}
+
+.fail {
+  display: none;
+  background-color: #f8d7da;
+  color: #1d6154;
+  border: 5px solid;
+  border-radius: 30px;
+  border-width: 1px;
+  text-align: center;
 }
