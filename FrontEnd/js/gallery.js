@@ -26,6 +26,7 @@ export async function createGallery() {
 export async function createFilter() {
   const filter = document.querySelector('.filterContainer')
   const infos = await fetchCategory() // infos qui vienent de fetchCategory()
+
   infos.forEach((category) => {
     // create button for each category and place
     const button = document.createElement('input')
@@ -78,8 +79,10 @@ allButton.addEventListener('click', () => {
   })
 })
 
-// const filterButtons = document.querySelectorAll('filter')
-
-// filterButtons.forEach((category) => {
-//   const result = category.filter((workItem) => 1)
-// })
+export async function hideFilter() {
+  const filter = document.querySelector('.filterContainer')
+  const token = localStorage.getItem('token') // pour récupérer le token dans le local storage
+  if (token) {
+    filter.style.display = 'none'
+  }
+}

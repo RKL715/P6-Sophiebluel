@@ -6,20 +6,22 @@
 
 console.log('JavaScript is working!')
 
-import { createGallery, createFilter } from './gallery.js'
+// contrôle affichage lorsque l'utilisateur est connecté
+const logout = document.getElementById('logout') // pour récupérer le bouton logout
+const edit = document.querySelector('.edit') // pour récupérer le bouton edit
+const edition = document.querySelector('.edition') // pour récupérer la bar edition
+logout.style.display = 'none' // pour masquer le bouton logout
+edit.style.display = 'none' // pour masquer le bouton edit
+edition.style.display = 'none' // pour masquer la bar edition
+
+import { createGallery, createFilter, hideFilter } from './gallery.js'
+import { logoutSystem } from '../login/logout.js'
 
 window.addEventListener('load', async function () {
   await createFilter()
   await createGallery()
-
-  // A partir de maintenant, les photos et filtres sont chargés.
-  const token = localStorage.getItem('token') // pour récupérer le token dans le local storage
-  if (token) {
-    console.log('User is logged in')
-    // User is logged in
-  } else {
-    console.log('User is not logged in')
-    this.alert('You are not logged in')
-    // User is not logged in
-  }
+  // les photos et filtres sont chargés.
 })
+
+logoutSystem()
+hideFilter()
