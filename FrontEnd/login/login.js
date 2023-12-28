@@ -1,7 +1,3 @@
-// Need error message if login fails (wrong password or username)
-// Need to redirect to home page if login is successful
-// Need to stay connected if user refreshes page
-// Need to redirect to home page if user is already logged in
 console.log('JavaScript is working!')
 
 const login = document.getElementsByClassName('login__form')[0] // pour récupérer le formulaire
@@ -29,16 +25,16 @@ connexion.addEventListener('click', async (event) => {
         password: password, // pour envoyer le password
       }),
     })
-    const data = await response.json() // pour récupérer les données du back
-    if (data.error) {
-      fail.style.display = 'block'
-      // pour afficher le message d'erreur
-      alert(data.error)
-    } else {
+    const data = await response.json()
+    console.log(data.token) // pour récupérer les données du back
+    if (data.token) {
       localStorage.setItem('token', data.token) // pour stocker le token dans le local storage
       // pour afficher le message de connexion
       alert('Vous êtes connecté')
       window.location.href = '../index.html' // pour rediriger vers la page d'accueil
+    } else {
+      fail.style.display = 'block' // pour afficher le message d'erreur
+      alert(data.message)
     }
   } catch (error) {
     console.log(error)

@@ -129,6 +129,7 @@ table {
 }
 /** end reset css**/
 body {
+  background-color: #fffef8;
   max-width: 1140px;
   margin: auto;
   font-family: 'Work Sans';
@@ -206,11 +207,15 @@ li:hover {
 }
 
 /* STYLE FOR FILTER */
+
+.filterContainer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 .filter {
-  position: relative;
-  top: 1px;
-  left: 20%;
-  background-color: white;
+  background-color: transparent;
   border-radius: 60px;
   border: 1px solid #1d6154;
   font-family: 'Syne';
@@ -313,9 +318,8 @@ footer nav ul {
 }
 
 .login__form label {
-  text-align: left;
+  margin: 1%;
 }
-
 /* style des champs */
 .field {
   margin: 10px 0;
@@ -396,3 +400,5 @@ a:hover {
   margin-top: 5px;
   cursor: pointer;
 }
+
+/* MODALE */
