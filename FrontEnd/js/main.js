@@ -16,6 +16,7 @@ edition.style.display = 'none' // pour masquer la bar edition
 
 import { createGallery, createFilter, hideFilter } from './gallery.js'
 import { logoutSystem } from '../login/logout.js'
+import { modaleOpen } from './modal.js'
 
 window.addEventListener('load', async function () {
   await createFilter()
@@ -25,3 +26,4 @@ window.addEventListener('load', async function () {
 
 logoutSystem()
 hideFilter()
+modaleOpen()

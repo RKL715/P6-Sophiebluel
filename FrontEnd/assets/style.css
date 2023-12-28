@@ -402,3 +402,100 @@ a:hover {
 }
 
 /* MODALE */
+
+/* Dialog part */
+dialog {
+  border-radius: 10px;
+  background: #fff;
+  width: 630px;
+  height: 688px;
+  flex-shrink: 0;
+  border: none;
+  outline: none;
+}
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* buttons part */
+
+modale-top {
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  right: 15px;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.return {
+  position: absolute;
+  left: 15px;
+  width: 21px;
+  height: 21px;
+  flex-shrink: 0;
+  margin: 10px;
+  cursor: pointer;
+}
+
+/* titre modale */
+.modale-title {
+  color: #000;
+  text-align: center;
+  font-family: Work Sans;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-top: 60px;
+}
+
+/* ajout photo */
+
+.photo-cadre {
+  width: 420px;
+  height: 169px;
+  flex-shrink: 0;
+  border-radius: 3px;
+  background: #e8f1f6;
+}
+
+.photo-vignette {
+  width: 76px;
+  height: 76px;
+  flex-shrink: 0;
+}
+
+.photo-button {
+  width: 173px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: 50px;
+  background: #cbd6dc;
+}
+
+.photo-button-text {
+  color: #306685;
+  text-align: center;
+  font-family: Work Sans;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.photo-restriction {
+  color: #444;
+  text-align: center;
+  font-family: Work Sans;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
