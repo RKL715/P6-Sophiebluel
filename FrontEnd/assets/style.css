@@ -444,6 +444,45 @@ modale-top {
   cursor: pointer;
 }
 
+/* Modale Gallery */
+
+.modale-gallery {
+  display: grid;
+  grid: auto-flow / repeat(5, 1fr);
+  grid-gap: 6px 23px;
+  margin: auto;
+  margin-top: 46px;
+  width: 90%;
+}
+
+.modale-gallery img {
+  width: 100%;
+  height: auto;
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+
+.modale-gallery i {
+  cursor: pointer;
+  background-color: black;
+  color: white;
+  position: absolute;
+  z-index: 1;
+  top: 5px;
+  right: 5px;
+  padding: 5px;
+  border-radius: 25%;
+}
+
+.modale-gallery i::backdrop {
+  background-color: black;
+}
+
 /* titre modale */
 .modale-title {
   color: #000;
