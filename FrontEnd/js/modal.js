@@ -1,22 +1,41 @@
 import { fetchGallery } from './apifetch.js'
 
+// OUVERTURE MODALE
+
 export function modaleOpen() {
   const openModale = document.querySelector('.edit') // selectionne le bouton edit
   const modale = document.querySelector('.modale') // selectionne la modale (dialog)
 
-  // OUVERTURE MODALE
   openModale.addEventListener('click', () => {
+    event.stopPropagation() // empêche la propagation de l'évènement
     console.log('click OK') // test (à supprimer)
     modale.showModal() // ouvre la modale
     modaleGallery() // affiche la gallerie de la modale
+    modaleClosed(modale) // ferme la modale
   })
-  // FERMETURE MODALE
+}
+
+// FERMETURE MODALE
+
+function modaleClosed(modale) {
   const closeModale = document.querySelector('.close') // selectionne la croix
+
+  const outsideClickListener = (event) => {
+    if (event.target === modale) {
+      modale.close() // Close the modal if the click is outside the modal
+      document.removeEventListener('click', outsideClickListener) // remove the event listener
+    }
+  }
 
   closeModale.addEventListener('click', () => {
     modale.close() // ferme la modale
+    document.removeEventListener('click', outsideClickListener) // remove the event listener
   })
+
+  document.addEventListener('click', outsideClickListener)
 }
+
+// AFFICHAGE GALERIE MODALE
 
 async function modaleGallery() {
   const modaleGallery = document.querySelector('.modale-gallery')
