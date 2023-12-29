@@ -40,9 +40,11 @@ function modaleClosed(modale) {
 async function modaleGallery() {
   const modaleGallery = document.querySelector('.modale-gallery')
   const modaleTitle = document.querySelector('.modale-title')
+  const modaleButton = document.querySelector('.modale-button')
   modaleGallery.innerHTML = '' // vide la modale à chaque ouverture (pour éviter les doublons)
 
   modaleTitle.textContent = 'Galerie photo'
+  modaleButton.value = 'Ajouter une photo'
 
   try {
     const works = await fetchGallery()

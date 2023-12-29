@@ -408,7 +408,7 @@ dialog {
   border-radius: 10px;
   background: #fff;
   width: 630px;
-  height: 688px;
+  height: fit-content;
   flex-shrink: 0;
   border: none;
   outline: none;
@@ -435,6 +435,7 @@ modale-top {
 }
 
 .return {
+  display: none;
   position: absolute;
   left: 15px;
   width: 21px;
@@ -493,6 +494,25 @@ modale-top {
   font-weight: 400;
   line-height: normal;
   margin-top: 60px;
+}
+
+/* Line modale */
+hr {
+  color: #b3b3b3;
+  width: 90%;
+  margin: 68px auto;
+}
+
+/* Bouton modale */
+.modale-button {
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  border: #1d6154;
+  outline: none;
+  width: 237px;
+  height: 36px;
+  flex-shrink: 0;
 }
 
 /* ajout photo */
