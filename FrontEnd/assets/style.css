@@ -402,3 +402,215 @@ a:hover {
 }
 
 /* MODALE */
+
+/* Dialog part */
+dialog {
+  border-radius: 10px;
+  background: #fff;
+  width: 630px;
+  height: fit-content;
+  flex-shrink: 0;
+  border: none;
+  outline: none;
+}
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* buttons part */
+
+modale-top {
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  right: 15px;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.return {
+  display: none;
+  position: absolute;
+  left: 15px;
+  width: 21px;
+  height: 21px;
+  flex-shrink: 0;
+  margin: 10px;
+  cursor: pointer;
+}
+
+/* Modale Gallery */
+
+.modale-gallery {
+  display: grid;
+  grid: auto-flow / repeat(5, 1fr);
+  grid-gap: 6px 23px;
+  margin: auto;
+  margin-top: 46px;
+  width: 90%;
+}
+
+.modale-gallery img {
+  width: 100%;
+  height: auto;
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+
+.modale-gallery i {
+  cursor: pointer;
+  background-color: black;
+  color: white;
+  position: absolute;
+  z-index: 1;
+  top: 5px;
+  right: 5px;
+  padding: 5px;
+  border-radius: 25%;
+}
+
+.modale-gallery i::backdrop {
+  background-color: black;
+}
+
+/* titre modale */
+.modale-title {
+  color: #000;
+  text-align: center;
+  font-family: Work Sans;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-top: 60px;
+}
+
+/* Line modale */
+hr {
+  color: #b3b3b3;
+  width: 90%;
+  margin: 68px auto;
+}
+
+/* Bouton modale */
+.modale-button {
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  border: #1d6154;
+  outline: none;
+  width: 237px;
+  height: 36px;
+  flex-shrink: 0;
+}
+
+/* form */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ajout photo */
+
+.photo-cadre {
+  width: 420px;
+  height: 169px;
+  flex-shrink: 0;
+  border-radius: 3px;
+  background: #e8f1f6;
+  margin: auto;
+  margin-top: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.photo-vignette {
+  width: 76px;
+  height: 76px;
+  flex-shrink: 0;
+  margin-top: 0;
+  background-size: contain;
+}
+
+.photo-button {
+  width: 173px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: 50px;
+  background: #cbd6dc;
+  cursor: pointer;
+  border: none;
+  color: #306685;
+  text-align: center;
+  font-family: Work Sans;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.photo-restriction {
+  color: #444;
+  text-align: center;
+  font-family: Work Sans;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding-top: 5px;
+}
+
+/* ajout titre */
+
+.titre {
+  width: 420px;
+  height: 51px;
+  flex-shrink: 0;
+  background: #fff;
+  box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+  margin-top: 56px;
+  border: none;
+}
+
+.categorie {
+  width: 420px;
+  height: 51px;
+  flex-shrink: 0;
+  background: #fff;
+  box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+  margin-top: 47px;
+  border: none;
+}
+
+.form-label-titre {
+  position: relative;
+  top: 45px;
+  right: 14em;
+  color: #3d3d3d;
+  font-family: Work Sans;
+  line-height: normal;
+}
+
+.form-label-categorie {
+  position: relative;
+  top: 40px;
+  right: 12.5em;
+  color: #3d3d3d;
+  font-family: Work Sans;
+  line-height: normal;
+}
