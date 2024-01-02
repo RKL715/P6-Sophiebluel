@@ -515,6 +515,14 @@ hr {
   flex-shrink: 0;
 }
 
+/* form */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 /* ajout photo */
 
 .photo-cadre {
@@ -523,12 +531,20 @@ hr {
   flex-shrink: 0;
   border-radius: 3px;
   background: #e8f1f6;
+  margin: auto;
+  margin-top: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .photo-vignette {
   width: 76px;
   height: 76px;
   flex-shrink: 0;
+  margin-top: 0;
+  background-size: contain;
 }
 
 .photo-button {
@@ -537,9 +553,8 @@ hr {
   flex-shrink: 0;
   border-radius: 50px;
   background: #cbd6dc;
-}
-
-.photo-button-text {
+  cursor: pointer;
+  border: none;
   color: #306685;
   text-align: center;
   font-family: Work Sans;
@@ -556,5 +571,46 @@ hr {
   font-size: 10px;
   font-style: normal;
   font-weight: 400;
+  line-height: normal;
+  padding-top: 5px;
+}
+
+/* ajout titre */
+
+.titre {
+  width: 420px;
+  height: 51px;
+  flex-shrink: 0;
+  background: #fff;
+  box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+  margin-top: 56px;
+  border: none;
+}
+
+.categorie {
+  width: 420px;
+  height: 51px;
+  flex-shrink: 0;
+  background: #fff;
+  box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+  margin-top: 47px;
+  border: none;
+}
+
+.form-label-titre {
+  position: relative;
+  top: 45px;
+  right: 14em;
+  color: #3d3d3d;
+  font-family: Work Sans;
+  line-height: normal;
+}
+
+.form-label-categorie {
+  position: relative;
+  top: 40px;
+  right: 12.5em;
+  color: #3d3d3d;
+  font-family: Work Sans;
   line-height: normal;
 }

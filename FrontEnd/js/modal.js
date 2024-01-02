@@ -1,4 +1,5 @@
 import { fetchGallery } from './apifetch.js'
+import { addWork } from './modal-add-works.js'
 
 // OUVERTURE MODALE
 
@@ -76,4 +77,7 @@ async function modaleGallery() {
   } catch (error) {
     console.error('Echec du  chargement de la galerie', error)
   }
+  modaleButton.addEventListener('click', () => {
+    addWork()
+  })
 }
