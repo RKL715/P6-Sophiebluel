@@ -1,6 +1,6 @@
 import { fetchCategory } from './apifetch.js'
 
-export function addWork() {
+export function ModaleAddWork() {
   const modaleContent = document.querySelector('.modale-content')
   const modaleGallery = document.querySelector('.modale-gallery')
   const modaleTitle = document.querySelector('.modale-title')
@@ -12,12 +12,12 @@ export function addWork() {
   modaleButton.value = 'Valider' // disabled tant que le formulaire n'est pas rempli
   // modaleButton.disabled = true // disabled tant que le formulaire n'est pas rempli
 
-  modaleButton.removeEventListener('click', addWork) // retire l'event listener précédent pour éviter les doublons
+  modaleButton.removeEventListener('click', ModaleAddWork) // retire l'event listener précédent pour éviter les doublons
   modaleButton.addEventListener('click', postForm) // ajoute l'event listener pour envoyer le formulaire
 
   modaleGallery.style.display = 'none'
   modaleContent.style.display = 'block'
-  // prevent reafichage 2eme page !!!!!!!!!!!!
+  // prevent reafichage 2eme page !!!!!!!!!!!!²
 
   //   Création du formulaire et des éléments
 
