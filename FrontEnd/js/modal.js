@@ -1,15 +1,15 @@
 import { fetchGallery } from './apifetch.js'
 import { addWork } from './modal-add-works.js'
+import { deleteWork } from './modal-delete-works.js'
 
 // OUVERTURE MODALE
 
-export function modaleOpen() {
+export function modaleHandler() {
   const openModale = document.querySelector('.edit') // selectionne le bouton edit
   const modale = document.querySelector('.modale') // selectionne la modale (dialog)
 
   openModale.addEventListener('click', () => {
     event.stopPropagation() // empêche la propagation de l'évènement
-    console.log('click OK') // test (à supprimer)
     modale.showModal() // ouvre la modale
     modaleGallery() // affiche la gallerie de la modale
     modaleClosed(modale) // ferme la modale
@@ -38,7 +38,7 @@ function modaleClosed(modale) {
 
 // AFFICHAGE GALERIE MODALE
 
-async function modaleGallery() {
+export async function modaleGallery() {
   const modaleGallery = document.querySelector('.modale-gallery')
   const modaleTitle = document.querySelector('.modale-title')
   const modaleButton = document.querySelector('.modale-button')
@@ -67,6 +67,11 @@ async function modaleGallery() {
 
       itrash.addEventListener('mouseout', () => {
         img.style.opacity = '1'
+      })
+
+      // Suppression de l'image au click sur l'icon
+      itrash.addEventListener('click', async () => {
+        deleteWork(workItem) // paramètre workItem pour récupérer l'id de l'image !!!
       })
 
       imageContainer.appendChild(img) // ajoute l'image au container
