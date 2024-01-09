@@ -71,7 +71,7 @@ export async function modaleGallery() {
 
       // Suppression de l'image au click sur l'icon
       itrash.addEventListener('click', async () => {
-        deleteWork(workItem) // paramètre workItem pour récupérer l'id de l'image !!!
+        deleteWork(workItem, imageContainer) // paramètre workItem pour récupérer l'id de l'image !!!
       })
 
       imageContainer.appendChild(img) // ajoute l'image au container
