@@ -2,16 +2,31 @@ import { fetchCategory } from './apifetch.js'
 import { createImageElements } from './image-elements.js'
 
 export function ModaleAddWork() {
-  //  Récupération des éléments du DOM
-  const modaleContent = document.querySelector('.modale-content')
-  const modaleGallery = document.querySelector('.modale-gallery')
-  const modaleTitle = document.querySelector('.modale-title')
-  const modaleButton = document.querySelector('.modale-button')
-  const returnButton = document.querySelector('.return')
+  const modalePage1 = document.querySelector('.modale-page-1')
+  modalePage1.style.display = 'none' // cache la page 1
 
-  // AFFICHAGE DES BOUTONS + TITRE
+  const modalePage2 = document.querySelector('.modale-page-2')
+  modalePage2.innerHTML = '' // vide la page 2 pour éviter les doublons
+  modalePage2.style.display = 'block' // affiche la page 2
+
+  //  Return button
+  const returnButton = document.querySelector('.return')
   returnButton.style.display = 'block'
+  returnButton.addEventListener('click', () => {
+    modalePage1.style.display = 'block' // affiche la page 1
+    modalePage2.style.display = 'none' // cache la page 2
+    returnButton.style.display = 'none' // cache le bouton retour
+  })
+
+  // AFFICHAGE DU BOUTON + TITRE
+  const modaleTitle = document.createElement('h5')
+  modaleTitle.className = 'modale-title'
   modaleTitle.textContent = 'Ajout photo'
+  modalePage2.appendChild(modaleTitle)
+
+  const modaleButton = document.createElement('input')
+  modaleButton.type = 'submit'
+  modaleButton.className = 'modale-button'
   modaleButton.value = 'Valider'
   modaleButton.disabled = true
   modaleButton.style.backgroundColor = 'gray'
@@ -21,15 +36,12 @@ export function ModaleAddWork() {
   modaleButton.removeEventListener('click', ModaleAddWork) // retire l'event listener précédent pour éviter les doublons
   modaleButton.addEventListener('click', postForm) // ajoute l'event listener pour envoyer le formulaire
 
-  modaleGallery.style.display = 'none'
-  modaleContent.style.display = 'block'
-  modaleContent.innerHTML = '' // vide la modale à chaque ouverture (pour éviter les doublons)
-
-  //   CREATTION ELEMENTS DU FORMULAIRE
+  //   CREATION ELEMENTS DU FORMULAIRE
   //   ** IMAGE **
   const form = document.createElement('form')
   form.className = 'form'
-  modaleContent.appendChild(form)
+  modalePage2.appendChild(form)
+
   // --- Formule pour réduire la taille de la fonction ModaleAddWork
   const { photoCadre, photoVignette, photoButton, photoRestriction } =
     createImageElements()
@@ -56,7 +68,6 @@ export function ModaleAddWork() {
   categorie.required = true
   categorie.className = 'categorie'
   form.appendChild(categorie)
-  fetchCategory()
 
   fetchCategory()
     .then((categories) => {
@@ -96,6 +107,14 @@ export function ModaleAddWork() {
       modaleButton.style.cursor = 'pointer'
     }
   })
+
+  // AFFICHAGE BAR HR
+  const bar = document.createElement('hr')
+  bar.className = 'bar'
+  modalePage2.appendChild(bar)
+
+  // Append du bouton valider
+  modalePage2.appendChild(modaleButton)
 }
 
 // PHOTOWORK
@@ -105,7 +124,6 @@ photoWork.type = 'file'
 photoWork.accept = 'image/png, image/jpg'
 photoWork.style.display = 'none' // Hide the file input
 photoWork.required = true
-
 // Create a new function to handle the change event for photoWork
 function handlePhotoWorkChange(photoVignette, photoButton, photoRestriction) {
   const WorkImg = photoWork.files[0] // récupère le fichier ajouté

@@ -39,13 +39,17 @@ function modaleClosed(modale) {
 // AFFICHAGE GALERIE MODALE
 
 export async function modaleGallery() {
-  const modaleGallery = document.querySelector('.modale-gallery')
-  const modaleTitle = document.querySelector('.modale-title')
-  const modaleButton = document.querySelector('.modale-button')
-  modaleGallery.innerHTML = '' // vide la modale à chaque ouverture (pour éviter les doublons)
+  const modalePage1 = document.querySelector('.modale-page-1')
+  modalePage1.innerHTML = ''
 
+  const modaleTitle = document.createElement('h5')
+  modaleTitle.className = 'modale-title'
   modaleTitle.textContent = 'Galerie photo'
-  modaleButton.value = 'Ajouter une photo'
+  modalePage1.appendChild(modaleTitle)
+
+  const modaleGallery = document.createElement('div')
+  modaleGallery.className = 'modale-gallery'
+  modalePage1.appendChild(modaleGallery)
 
   try {
     const works = await fetchGallery()
@@ -82,6 +86,17 @@ export async function modaleGallery() {
   } catch (error) {
     console.error('Echec du  chargement de la galerie', error)
   }
+
+  const bar = document.createElement('hr')
+  bar.className = 'bar'
+  modalePage1.appendChild(bar)
+
+  const modaleButton = document.createElement('input')
+  modaleButton.type = 'submit'
+  modaleButton.className = 'modale-button'
+  modaleButton.value = 'Ajouter une photo'
+  modalePage1.appendChild(modaleButton)
+
   modaleButton.addEventListener('click', () => {
     ModaleAddWork()
   })
