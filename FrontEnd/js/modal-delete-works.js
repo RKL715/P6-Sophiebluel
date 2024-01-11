@@ -7,15 +7,14 @@ export function deleteWork(workId, elementToRemove) {
     headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
   })
     .then((response) => {
-      if (!response.ok) {
+      if (response.ok) {
+        elementToRemove.remove()
+        createGallery()
+      } else {
         throw new Error(`HTTP error! status: ${response.status}`)
       }
-      // Retire l'élément du DOM
-      // après avoir supprimé le work dans l'API
-      elementToRemove.remove()
-      createGallery()
     })
     .catch((error) => {
-      console.error('SuperError:', error)
+      console.error('Erreur lors de la suppression', error)
     })
 }
