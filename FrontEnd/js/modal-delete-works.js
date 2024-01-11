@@ -1,19 +1,21 @@
-import { fetchGallery } from './apifetch.js'
+import { createGallery } from './gallery.js'
 
 // Function pour delete un work dans la modale
 export function deleteWork(workId, elementToRemove) {
   fetch(`http://localhost:5678/api/works/${workId}`, {
     method: 'DELETE',
-    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }, // Récupère le token dans le local storage
+    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
   })
     .then((response) => {
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`) // Gestion des erreurs
+        throw new Error(`HTTP error! status: ${response.status}`)
       }
-      // Remove the element from the DOM
-      elementToRemove.remove() // Supprime l'élément du DOM
+      // Retire l'élément du DOM
+      // après avoir supprimé le work dans l'API
+      elementToRemove.remove()
+      createGallery()
     })
     .catch((error) => {
-      console.error('Error:', error)
+      console.error('SuperError:', error)
     })
 }

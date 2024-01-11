@@ -1,4 +1,5 @@
 import { fetchCategory } from './apifetch.js'
+import { createGallery } from './gallery.js'
 import { createImageElements } from './image-elements.js'
 
 export function ModaleAddWork() {
@@ -73,7 +74,7 @@ export function ModaleAddWork() {
     .then((categories) => {
       categories.forEach((category) => {
         const option = document.createElement('option')
-        option.value = category.Id
+        option.value = category.id
         option.text = category.name
         categorie.appendChild(option)
       })
@@ -121,10 +122,11 @@ export function ModaleAddWork() {
 // Création de la fonctionalité pour ajouter une photo
 const photoWork = document.createElement('input')
 photoWork.type = 'file'
+photoWork.name = 'photoWork'
 photoWork.accept = 'image/png, image/jpg'
-photoWork.style.display = 'none' // Hide the file input
+photoWork.style.display = 'none'
 photoWork.required = true
-// Create a new function to handle the change event for photoWork
+
 function handlePhotoWorkChange(photoVignette, photoButton, photoRestriction) {
   const WorkImg = photoWork.files[0] // récupère le fichier ajouté
   if (WorkImg.size > 4000000) {
@@ -145,5 +147,31 @@ function handlePhotoWorkChange(photoVignette, photoButton, photoRestriction) {
 
 // POST FORMULAIRE
 function postForm() {
-  console.log('postForm')
+  const modale = document.querySelector('.modale')
+  const form = document.querySelector('.form')
+  const file = form.elements.photoWork.files[0] // récupère le fichier ajouté
+
+  // Create new FormData instance
+  let formData = new FormData()
+
+  // Append the fields
+  formData.append('title', form.elements.Titre.value)
+  formData.append('image', file)
+  formData.append('category', parseInt(form.elements['Catégorie'].value))
+
+  fetch('http://localhost:5678/api/works', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
+    body: formData,
+  })
+    .then((response) => {
+      console.log('Success:', response)
+      return response.json()
+    })
+    .then((data) => {
+      modale.close()
+      createGallery()
+    })
 }

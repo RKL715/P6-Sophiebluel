@@ -4,6 +4,7 @@ import { fetchGallery, fetchCategory } from './apifetch.js'
 
 export async function createGallery() {
   const galleryContainer = document.querySelector('.gallery')
+  galleryContainer.innerHTML = ''
   const works = await fetchGallery() // return works
   works.forEach((workItem) => {
     const figure = document.createElement('figure')
@@ -15,7 +16,6 @@ export async function createGallery() {
     title.textContent = workItem.title
     img.alt = workItem.title
     figure.dataset.categoryId = workCategoryId
-    // workCategoryId === CategoryId
 
     figure.appendChild(img)
     figure.appendChild(title)
