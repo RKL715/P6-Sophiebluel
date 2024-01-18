@@ -1,5 +1,3 @@
-console.log('JavaScript is working!')
-
 const login = document.getElementsByClassName('login__form')[0] // pour récupérer le formulaire
 const connexion = document.getElementsByClassName('connexion')[0] // pour récupérer le bouton connexion
 const fail = document.getElementsByClassName('fail')[0] // pour récupérer le message d'erreur
@@ -26,19 +24,14 @@ connexion.addEventListener('click', async (event) => {
       }),
     })
     const data = await response.json()
-    console.log(data.token) // pour récupérer les données du back
     if (data.token) {
       localStorage.setItem('token', data.token) // pour stocker le token dans le local storage
       // pour afficher le message de connexion
-      alert('Vous êtes connecté')
       window.location.href = '../index.html' // pour rediriger vers la page d'accueil
     } else {
       fail.style.display = 'block' // pour afficher le message d'erreur
-      alert(data.message)
     }
   } catch (error) {
     console.log(error)
   }
 })
-
-console.log('JavaScript is working! 2')

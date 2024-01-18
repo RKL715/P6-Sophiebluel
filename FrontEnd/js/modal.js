@@ -1,5 +1,5 @@
 import { fetchGallery } from './apifetch.js'
-import { addWork } from './modal-add-works.js'
+import { ModaleAddWork } from './modal-add-works.js'
 import { deleteWork } from './modal-delete-works.js'
 
 // OUVERTURE MODALE
@@ -18,19 +18,20 @@ export function modaleHandler() {
 
 // FERMETURE MODALE
 
+// ferme la modale au click sur la croix ou en dehors de la modale
 function modaleClosed(modale) {
   const closeModale = document.querySelector('.close') // selectionne la croix
 
   const outsideClickListener = (event) => {
     if (event.target === modale) {
-      modale.close() // Close the modal if the click is outside the modal
-      document.removeEventListener('click', outsideClickListener) // remove the event listener
+      modale.close() // ferme la modale
+      document.removeEventListener('click', outsideClickListener) // retire l'event listener
     }
   }
 
   closeModale.addEventListener('click', () => {
     modale.close() // ferme la modale
-    document.removeEventListener('click', outsideClickListener) // remove the event listener
+    document.removeEventListener('click', outsideClickListener) // retire l'event listener
   })
 
   document.addEventListener('click', outsideClickListener)
@@ -39,13 +40,17 @@ function modaleClosed(modale) {
 // AFFICHAGE GALERIE MODALE
 
 export async function modaleGallery() {
-  const modaleGallery = document.querySelector('.modale-gallery')
-  const modaleTitle = document.querySelector('.modale-title')
-  const modaleButton = document.querySelector('.modale-button')
-  modaleGallery.innerHTML = '' // vide la modale à chaque ouverture (pour éviter les doublons)
+  const modalePage1 = document.querySelector('.modale-page-1')
+  modalePage1.innerHTML = ''
 
+  const modaleTitle = document.createElement('h5')
+  modaleTitle.className = 'modale-title'
   modaleTitle.textContent = 'Galerie photo'
-  modaleButton.value = 'Ajouter une photo'
+  modalePage1.appendChild(modaleTitle)
+
+  const modaleGallery = document.createElement('div')
+  modaleGallery.className = 'modale-gallery'
+  modalePage1.appendChild(modaleGallery)
 
   try {
     const works = await fetchGallery()
@@ -71,7 +76,7 @@ export async function modaleGallery() {
 
       // Suppression de l'image au click sur l'icon
       itrash.addEventListener('click', async () => {
-        deleteWork(workItem) // paramètre workItem pour récupérer l'id de l'image !!!
+        deleteWork(workItem.id, imageContainer) // paramètre workItem pour récupérer l'id de l'image !!!
       })
 
       imageContainer.appendChild(img) // ajoute l'image au container
@@ -82,7 +87,18 @@ export async function modaleGallery() {
   } catch (error) {
     console.error('Echec du  chargement de la galerie', error)
   }
+
+  const bar = document.createElement('hr')
+  bar.className = 'bar'
+  modalePage1.appendChild(bar)
+
+  const modaleButton = document.createElement('input')
+  modaleButton.type = 'submit'
+  modaleButton.className = 'modale-button'
+  modaleButton.value = 'Ajouter une photo'
+  modalePage1.appendChild(modaleButton)
+
   modaleButton.addEventListener('click', () => {
-    addWork()
+    ModaleAddWork()
   })
 }

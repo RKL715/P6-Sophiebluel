@@ -1,66 +1,64 @@
 import { fetchCategory } from './apifetch.js'
+import { createGallery } from './gallery.js'
+import { createImageElements } from './image-elements.js'
 
-export function addWork() {
-  const modaleContent = document.querySelector('.modale-content')
-  const modaleGallery = document.querySelector('.modale-gallery')
-  const modaleTitle = document.querySelector('.modale-title')
-  const modaleButton = document.querySelector('.modale-button')
+export function ModaleAddWork() {
+  const modalePage1 = document.querySelector('.modale-page-1')
+  modalePage1.style.display = 'none' // cache la page 1
+
+  const modalePage2 = document.querySelector('.modale-page-2')
+  modalePage2.innerHTML = '' // vide la page 2 pour éviter les doublons
+  modalePage2.style.display = 'block' // affiche la page 2
+
+  //  Return button
   const returnButton = document.querySelector('.return')
-
   returnButton.style.display = 'block'
-  modaleTitle.textContent = 'Ajout photo'
-  modaleButton.value = 'Valider' // disabled tant que le formulaire n'est pas rempli
-  // modaleButton.disabled = true // disabled tant que le formulaire n'est pas rempli
+  returnButton.addEventListener('click', () => {
+    modalePage1.style.display = 'block' // affiche la page 1
+    modalePage2.style.display = 'none' // cache la page 2
+    returnButton.style.display = 'none' // cache le bouton retour
+  })
 
-  modaleButton.removeEventListener('click', addWork) // retire l'event listener précédent pour éviter les doublons
+  // AFFICHAGE DU BOUTON + TITRE
+  const modaleTitle = document.createElement('h5')
+  modaleTitle.className = 'modale-title'
+  modaleTitle.textContent = 'Ajout photo'
+  modalePage2.appendChild(modaleTitle)
+
+  const modaleButton = document.createElement('input')
+  modaleButton.type = 'submit'
+  modaleButton.className = 'modale-button'
+  modaleButton.value = 'Valider'
+  modaleButton.disabled = true
+  modaleButton.style.backgroundColor = 'gray'
+  modaleButton.style.cursor = 'not-allowed'
+
+  //  EVENT LISTENER POUR ENVOYER LE FORMULAIRE
+  modaleButton.removeEventListener('click', ModaleAddWork) // retire l'event listener précédent pour éviter les doublons
   modaleButton.addEventListener('click', postForm) // ajoute l'event listener pour envoyer le formulaire
 
-  modaleGallery.style.display = 'none'
-  modaleContent.style.display = 'block'
-  // prevent reafichage 2eme page !!!!!!!!!!!!
-
-  //   Création du formulaire et des éléments
-
-  //   IMAGE
+  //   CREATION ELEMENTS DU FORMULAIRE
+  //   ** IMAGE **
   const form = document.createElement('form')
   form.className = 'form'
-  modaleContent.appendChild(form)
+  modalePage2.appendChild(form)
 
-  const photoCadre = document.createElement('div')
-  photoCadre.className = 'photo-cadre'
+  // --- Formule pour réduire la taille de la fonction ModaleAddWork
+  const { photoCadre, photoVignette, photoButton, photoRestriction } =
+    createImageElements()
   form.appendChild(photoCadre)
-
-  const photoVignette = document.createElement('div')
-  photoVignette.className = 'photo-vignette'
-  photoVignette.style.backgroundImage =
-    'url(../assets/images/vignette-placeholder.png)'
-  photoCadre.appendChild(photoVignette)
-
-  const photoButton = document.createElement('button')
-  photoButton.type = 'button' // pour éviter que le bouton ne soumette le formulaire
-  photoButton.className = 'photo-button'
-  photoButton.textContent = '+ Ajouter photo'
-  photoCadre.appendChild(photoButton)
-
-  const photoRestriction = document.createElement('p')
-  photoRestriction.className = 'photo-restriction'
-  photoRestriction.textContent = 'jpg, png : 4Mo max' // créer la fonction pour vérifier le format et la taille
-  photoCadre.appendChild(photoRestriction)
-
-  //   TITRE
+  //  ** TITRE **
   const titreLabel = document.createElement('label')
   titreLabel.textContent = 'Titre'
   titreLabel.className = 'form-label-titre'
   form.appendChild(titreLabel)
-
   const titre = document.createElement('input')
   titre.type = 'text'
   titre.name = 'Titre'
   titre.required = true
   titre.className = 'titre'
   form.appendChild(titre)
-
-  //   CATEGORIE
+  //  ** CATEGORIE **
   const categorieLabel = document.createElement('label')
   categorieLabel.textContent = 'Catégorie'
   categorieLabel.className = 'form-label-categorie'
@@ -71,13 +69,12 @@ export function addWork() {
   categorie.required = true
   categorie.className = 'categorie'
   form.appendChild(categorie)
-  fetchCategory()
 
   fetchCategory()
     .then((categories) => {
       categories.forEach((category) => {
         const option = document.createElement('option')
-        option.value = category.Id
+        option.value = category.id
         option.text = category.name
         categorie.appendChild(option)
       })
@@ -86,25 +83,95 @@ export function addWork() {
       console.error(error)
     })
 
-  photoButton.eventListener('click', () => {
-    addPhoto()
+  form.appendChild(photoWork)
+
+  // EVENT LISTENER POUR AJOUTER UNE PHOTO
+  photoButton.addEventListener('click', (event) => {
+    event.preventDefault()
+    photoWork.click()
   })
+  photoWork.addEventListener('change', () =>
+    handlePhotoWorkChange(photoVignette, photoButton, photoRestriction)
+  )
+
+  //  ** POST FORM **
+  form.addEventListener('input', () => {
+    // Check si tous les champs requis sont remplis
+    const allFieldsFilled = Array.from(form.elements).every((element) => {
+      return element.required ? Boolean(element.value) : true
+    })
+
+    // Enable ou disable modaleButton si tous les champs requis sont remplis
+    if (allFieldsFilled) {
+      modaleButton.disabled = false
+      modaleButton.style.backgroundColor = '#1d6154'
+      modaleButton.style.cursor = 'pointer'
+    }
+  })
+
+  // AFFICHAGE BAR HR
+  const bar = document.createElement('hr')
+  bar.className = 'bar'
+  modalePage2.appendChild(bar)
+
+  // Append du bouton valider
+  modalePage2.appendChild(modaleButton)
 }
 
-// ADD PHOTO
+// PHOTOWORK
+// Création de la fonctionalité pour ajouter une photo
+const photoWork = document.createElement('input')
+photoWork.type = 'file'
+photoWork.name = 'photoWork'
+photoWork.accept = 'image/png, image/jpg'
+photoWork.style.display = 'none'
+photoWork.required = true
 
-function addPhoto() {
-  const photoWork = document.createElement('input')
-  photoWork.type = 'file'
-  photoWork.accept = 'image/png, image/jpg'
-  // 4MO MAX
-  photoWork.required = true
-  form.appendChild(photoWork)
+function handlePhotoWorkChange(photoVignette, photoButton, photoRestriction) {
+  const WorkImg = photoWork.files[0] // récupère le fichier ajouté
+  if (WorkImg.size > 4000000) {
+    alert('Le fichier est trop volumineux')
+    photoWork.value = '' // reset le formulaire pour éviter les doublons
+    return // stop la fonction
+  }
+  const fileURL = URL.createObjectURL(WorkImg) // récupère l'url du fichier ajouté
+  photoVignette.style.backgroundImage = `url(${fileURL})` // ajoute l'url du fichier ajouté à la vignette
+  photoVignette.style.width = '50%'
+  photoVignette.style.height = '100%'
+  photoRestriction.style.display = 'none'
+  photoButton.style.display = 'none'
+  photoVignette.style.backgroundSize = 'contain'
+  photoVignette.style.backgroundPosition = 'center'
+  photoVignette.style.backgroundRepeat = 'no-repeat'
 }
 
 // POST FORMULAIRE
 function postForm() {
-  console.log('postForm')
-}
+  const modale = document.querySelector('.modale')
+  const form = document.querySelector('.form')
+  const file = form.elements.photoWork.files[0] // récupère le fichier ajouté
 
-// form.reset() // reset le formulaire pour éviter les doublons
+  // Create new FormData instance
+  let formData = new FormData()
+
+  // Append the fields
+  formData.append('title', form.elements.Titre.value)
+  formData.append('image', file)
+  formData.append('category', parseInt(form.elements['Catégorie'].value))
+
+  fetch('http://localhost:5678/api/works', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
+    body: formData,
+  })
+    .then((response) => {
+      console.log('Success:', response)
+      return response.json()
+    })
+    .then((data) => {
+      modale.close()
+      createGallery()
+    })
+}

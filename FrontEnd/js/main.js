@@ -1,11 +1,6 @@
 // TEST SERVER FETCH API
 // console.log(fetch('http://localhost:5678/api/works'))
 
-// import { createWork, createButton, filterContentByCategory } from './api.js'
-// import { filtrageCateory } from ".//nqnanana" EN FAISANT ATTENTION À LES ATTENDRE ASYNC AWAIT
-
-console.log('JavaScript is working!')
-
 // contrôle affichage lorsque l'utilisateur est connecté
 const logout = document.getElementById('logout') // pour récupérer le bouton logout
 const edit = document.querySelector('.edit') // pour récupérer le bouton edit
