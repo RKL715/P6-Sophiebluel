@@ -18,19 +18,20 @@ export function modaleHandler() {
 
 // FERMETURE MODALE
 
+// ferme la modale au click sur la croix ou en dehors de la modale
 function modaleClosed(modale) {
   const closeModale = document.querySelector('.close') // selectionne la croix
 
   const outsideClickListener = (event) => {
     if (event.target === modale) {
-      modale.close() // Close the modal if the click is outside the modal
-      document.removeEventListener('click', outsideClickListener) // remove the event listener
+      modale.close() // ferme la modale
+      document.removeEventListener('click', outsideClickListener) // retire l'event listener
     }
   }
 
   closeModale.addEventListener('click', () => {
     modale.close() // ferme la modale
-    document.removeEventListener('click', outsideClickListener) // remove the event listener
+    document.removeEventListener('click', outsideClickListener) // retire l'event listener
   })
 
   document.addEventListener('click', outsideClickListener)
