@@ -1,9 +1,5 @@
 # Formation Intégrateur Web, Open-Classroom. Projet 6. "Portfolio-Sophie-Bluel"
 
- - Lancer le backend depuis votre terminal en suivant les instruction du fichier ReadMe.
- - Si vous désirez afficher le code du backend et du frontend, faites le dans 2 instances de VSCode différentes pour éviter tout problème
-
-
 ## Description 
 
 Ce projet avait pour but de créer une page web dynamique avec JavaScript en communiquant avec une API.
@@ -25,3 +21,8 @@ Les maquettes étaient disponible sur Figma.
 * Gérer les événements utilisateurs avec JavaScript
 * Manipuler les éléments du DOM avec JavaScript
 * Récupérer les données utilisateurs dans le JavaScript via des formulaires
+
+### Consignes d'usage
+
+ * Lancer le backend depuis votre terminal en suivant les instruction du fichier ReadMe.
+ * Si vous désirez afficher le code du backend et du frontend, faites le dans 2 instances de VSCode différentes pour éviter tout problème
