@@ -130,14 +130,17 @@ table {
 /** end reset css**/
 body {
   background-color: #fffef8;
-  max-width: 1140px;
-  margin: auto;
+  /*max-width: 1140px;*/
+  width: clamp(375px, 80vw, 1140px);
+  box-sizing: border-box;
+  margin: 0 auto;
   font-family: 'Work Sans';
   font-size: 14px;
 }
 header {
   display: flex;
-  justify-content: space-between;
+  /*justify-content: space-between;*/
+  width: clamp(375px, 100%, 1140px);
   margin: 50px 0;
 }
 section {
@@ -165,6 +168,10 @@ h2 {
   font-size: 30px;
   color: #1d6154;
 }
+nav {
+  width: fit-content;
+}
+
 nav ul {
   display: flex;
   align-items: center;
@@ -172,7 +179,7 @@ nav ul {
 }
 nav li {
   padding: 0 10px;
-  font-size: 1.2em;
+  font-size: 1em;
 }
 
 li:hover {
@@ -375,12 +382,12 @@ a:hover {
 /* mode edition bar */
 
 .edition {
-  width: 100%;
-  max-width: 1140px;
-  margin-bottom: 15%;
+  width: clamp(375px, 100%, 1140px);
+  /*margin-bottom: 15%;*/
   font-family: 'Work Sans';
   position: absolute;
   top: 0;
+  left: 0;
   background-color: black;
   color: white;
   height: 35px;
@@ -404,14 +411,15 @@ a:hover {
 /* MODALE */
 
 /* Dialog part */
-dialog {
+.modale {
   border-radius: 10px;
   background: #fff;
-  width: 630px;
+  width: clamp(250px, 80vw, 650px);
   height: fit-content;
   flex-shrink: 0;
   border: none;
   outline: none;
+  align-content: center;
 }
 
 dialog::backdrop {
@@ -452,7 +460,7 @@ modale-top {
   grid: auto-flow / repeat(5, 1fr);
   grid-gap: 6px 23px;
   margin: auto;
-  margin-top: 46px;
+  margin-top: 5%;
   width: 90%;
 }
 
@@ -526,7 +534,7 @@ hr {
 /* ajout photo */
 
 .photo-cadre {
-  width: 420px;
+  width: clamp(150px, 80vw, 500px);
   height: 169px;
   flex-shrink: 0;
   border-radius: 3px;
@@ -578,7 +586,7 @@ hr {
 /* ajout titre */
 
 .titre {
-  width: 420px;
+  width: clamp(100px, 80vw, 400px);
   height: 51px;
   flex-shrink: 0;
   background: #fff;
@@ -587,8 +595,17 @@ hr {
   border: none;
 }
 
+.form-label-titre {
+  position: relative;
+  top: 45px;
+  right: 10em;
+  color: #3d3d3d;
+  font-family: Work Sans;
+  line-height: normal;
+}
+
 .categorie {
-  width: 420px;
+  width: clamp(100px, 80vw, 400px);
   height: 51px;
   flex-shrink: 0;
   background: #fff;
@@ -597,19 +614,10 @@ hr {
   border: none;
 }
 
-.form-label-titre {
-  position: relative;
-  top: 45px;
-  right: 14em;
-  color: #3d3d3d;
-  font-family: Work Sans;
-  line-height: normal;
-}
-
 .form-label-categorie {
   position: relative;
   top: 40px;
-  right: 12.5em;
+  right: 9em;
   color: #3d3d3d;
   font-family: Work Sans;
   line-height: normal;
