@@ -51,10 +51,13 @@ export function ModaleAddWork() {
   const titreLabel = document.createElement('label')
   titreLabel.textContent = 'Titre'
   titreLabel.className = 'form-label-titre'
+  titreLabel.htmlFor = 'titre'
   form.appendChild(titreLabel)
+
   const titre = document.createElement('input')
   titre.type = 'text'
   titre.name = 'Titre'
+  titre.id = 'titre'
   titre.required = true
   titre.className = 'titre'
   form.appendChild(titre)
